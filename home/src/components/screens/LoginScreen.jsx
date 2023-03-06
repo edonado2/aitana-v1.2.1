@@ -56,7 +56,7 @@ const LoginScreen = ({ navigation }) => {
                 {error && <Text>{error}</Text>}
 
                 <TouchableOpacity style={styles.link} onPress={() => navigation.navigate('ResetPass')}>
-                    <Text style={styles.linkText}>Recuperar Contrasena</Text>
+                    <Text style={styles.linkText}>Recuperar Contraseña</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.link} onPress={() => navigation.navigate('Register')}>

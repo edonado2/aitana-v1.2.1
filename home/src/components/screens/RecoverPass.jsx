@@ -1,190 +1,99 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {
-    Text,
-    View,
-    Pressable,
     StyleSheet,
+    Text,
     TextInput,
-    KeyboardAvoidingView,
+    TouchableOpacity,
+    View,
 } from 'react-native';
-import SvgIcon
-    from '../../../common/images/svgIcons';
-const RecoverPass = ({ navigation }) => {
+import { AntDesign } from '@expo/vector-icons';
+
+const RecoverPasswordScreen = ({ navigation }) => {
+    const [email, setEmail] = useState('');
+
+    const handleRecoverPassword = () => {
+        // send password recovery email
+    };
+
     return (
-        <KeyboardAvoidingView behavior="position" style={styles.mainCon}>
-            <View style={{ padding: 20 }}>
-                <Pressable onPress={() => this.props.navigation.goBack(null)}>
-                    <SvgIcon icon={'back'} width={30} height={30} />
-                </Pressable>
+        <View style={styles.container}>
+            <View style={styles.header}>
             </View>
-            <View style={{ position: 'relative', bottom: 30 }}>
-                <View style={styles.loginIcon}>
-                    <SvgIcon icon={'reset'} width={300} height={300} />
-                </View>
-                <View style={styles.container}>
-                    <View style={styles.loginLblCon}>
-                        <Text style={styles.loginLbl}>Reset {'   '} Password</Text>
-                    </View>
-                    <View style={styles.formCon}>
-                        <View style={[styles.textBoxCon]}>
-                            <View style={styles.at}>
-                                <SvgIcon icon={'lock'} width={20} height={20} />
-                            </View>
-                            <View style={[styles.passCon]}>
-                                <View style={styles.textCon}>
-                                    <TextInput
-                                        style={styles.textInput}
-                                        placeholder={'New Password'}
-                                        placeholderTextColor={'#aaa'}
-                                        secureTextEntry={true}
-                                    />
-                                </View>
-                                <View style={styles.show}>
-                                    <SvgIcon icon={'show'} width={20} height={20} />
-                                </View>
-                            </View>
-                        </View>
-                        <View style={[styles.textBoxCon, { marginTop: 30 }]}>
-                            <View style={styles.at}>
-                                <SvgIcon icon={'lock'} width={20} height={20} />
-                            </View>
-                            <View style={[styles.passCon]}>
-                                <View style={styles.textCon}>
-                                    <TextInput
-                                        style={styles.textInput}
-                                        placeholder={'Confirm Password'}
-                                        placeholderTextColor={'#aaa'}
-                                        secureTextEntry={true}
-                                    />
-                                </View>
-                                <View style={styles.show}>
-                                    <SvgIcon icon={'show'} width={20} height={20} />
-                                </View>
-                            </View>
-                        </View>
-                    </View>
-
-                    <View style={[styles.loginCon, { marginTop: 30 }]}>
-                        <Pressable style={styles.LoginBtn}>
-                            <Text style={styles.loginBtnLbl}>Submit</Text>
-                        </Pressable>
-                    </View>
-                </View>
+            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                <AntDesign name="arrowleft" size={24} color="black" style={{ padding: 20 }} />
+            </TouchableOpacity>
+            <View style={styles.body}>
+                <Text style={styles.title}> Recupera tu contraseña</Text>
+                <Text style={styles.subtitle}>
+                    Ingrese su correo electrónico para recuperar su contraseña
+                </Text>
+                <TextInput
+                    style={styles.input}
+                    value={email}
+                    onChangeText={setEmail}
+                    placeholder="Correo Electrónico"
+                    placeholderTextColor="gray"
+                />
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={handleRecoverPassword}>
+                    <Text style={styles.buttonText}>Enviar</Text>
+                </TouchableOpacity>
             </View>
-        </KeyboardAvoidingView>
+        </View>
     );
-}
-
-export default RecoverPass;
+};
 
 const styles = StyleSheet.create({
-    mainCon: {
-        backgroundColor: '#fff',
-        flex: 1,
-    },
-    loginIcon: {
-        alignSelf: 'center',
-    },
-    formCon: {
-        flexDirection: 'column',
-        justifyContent: 'space-around',
-    },
     container: {
-        paddingHorizontal: 20,
-    },
-    loginLblCon: {
-        position: 'relative',
-        bottom: 40,
-    },
-    loginLbl: {
-        color: '#000',
-        fontSize: 40,
-    },
-    at: {
-        alignSelf: 'center',
-        width: '10%',
-    },
-    show: {
-        alignSelf: 'center',
-        width: '10%',
-        position: 'relative',
-        right: 20,
-        zIndex: 10,
-    },
-    textBoxCon: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-    textCon: {
-        width: '90%',
-    },
-    passCon: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-    textInput: {
-        borderBottomColor: '#aaa',
-        borderWidth: 1,
-        borderTopWidth: 0,
-        borderLeftWidth: 0,
-        borderRightWidth: 0,
-        color: '#000',
-        fontSize: 16,
-        height: 40,
-    },
-    forgotAction: {
-        paddingVertical: 20,
-    },
-    registerCon: { flexDirection: 'row', justifyContent: 'center', paddingTop: 10 },
-    registerNew: {
-        color: '#aaa',
-
-    },
-    forgotLbl: {
-        color: '#0057ff',
-        textAlign: 'right',
-
-    },
-    LoginBtn: {
-        backgroundColor: '#0057ff',
-        borderRadius: 20,
-    },
-    loginBtnLbl: {
-        textAlign: 'center',
-        fontSize: 16,
-        color: '#fff',
-        paddingVertical: 10,
-    },
-    devider: {
-        borderBottomColor: '#aaa',
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        marginTop: 20,
-    },
-    or: {
-        color: '#aaa',
-        textAlign: 'center',
+        flex: 1,
         backgroundColor: '#fff',
-        width: 60,
-        alignSelf: 'center',
-
-        position: 'relative',
-        bottom: 13,
     },
-    deviderCon: {
-        paddingVertical: 10,
-    },
-    googleIconCon: {
+    header: {
+        backgroundColor: '#710193',
         flexDirection: 'row',
-        backgroundColor: '#eee',
-        justifyContent: 'center',
-        paddingVertical: 15,
-        borderRadius: 20,
-        paddingHorizontal: 30,
+        alignItems: 'center',
+        padding: 16,
     },
-    googleLbl: {
-        color: '#000',
+    title: {
+        color: 'black',
+        fontSize: 25,
+        fontWeight: 'bold',
+        marginBottom: 15,
+    },
+    body: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 16,
+    },
+    subtitle: {
+        fontSize: 25,
+        marginBottom: 32,
         textAlign: 'center',
-        paddingHorizontal: 30,
-
+    },
+    input: {
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 8,
+        padding: 8,
+        marginBottom: 16,
+        width: '100%',
+        fontSize: 16,
+    },
+    button: {
+        backgroundColor: '#710193',
+        padding: 16,
+        borderRadius: 25,
+        marginTop: 32,
+        width: '100%',
+        alignItems: 'center',
+    },
+    buttonText: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 16,
     },
 });
+
+export default RecoverPasswordScreen;
